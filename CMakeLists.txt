@@ -1,0 +1,17 @@
+cmake_minimum_required(VERSION 3.2)
+project(runtime)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/packages ${CMAKE_SOURCE_DIR}/cmake)
+set(HTTP_PROXY "" CACHE string "If you are behind a http proxy, set it here")
+set(HTTPS_PROXY "" CACHE string "If you are behind a https proxy, set it here")
+set(DOWNLOAD_DIRECTORY "${CMAKE_BINARY_DIR}/download" CACHE path "Source packages will be downloaded to this directory")
+set(BUILD_DIRECTORY "${CMAKE_BINARY_DIR}/build" CACHE path "Source packages will be decompressed, repositories cloned to this directory")
+
+if(NOT "${HTTP_PROXY}" STREQUAL "")
+	set(ENV{http_proxy} "${HTTP_PROXY}")
+endif()
+if(NOT "${HTTPS_PROXY}" STREQUAL "")
+	set(ENV{https_proxy} "${HTTPS_PROXY}")
+endif()
+# Packages-----------------------------------------
+include(zlib)
+#include(libpng)

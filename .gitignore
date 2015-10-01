@@ -1,0 +1,15 @@
+# Compressed Files            #
+###############################
+*.tar.gz
+*.tar.bz2
+*.zip
+
+# Possible build directories  #
+###############################
+x64
+x32
+codeblocks
+msvc64
+msvc32
+mingw32
+mingw64
