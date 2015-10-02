@@ -6,6 +6,9 @@ set(HTTPS_PROXY "" CACHE string "If you are behind a https proxy, set it here")
 set(DOWNLOAD_DIRECTORY "${CMAKE_BINARY_DIR}/download" CACHE path "Source packages will be downloaded to this directory")
 set(BUILD_DIRECTORY "${CMAKE_BINARY_DIR}/build" CACHE path "Source packages will be decompressed, repositories cloned to this directory")
 
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
+set(LIBRARY_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/bin)
+
 if(NOT "${HTTP_PROXY}" STREQUAL "")
 	set(ENV{http_proxy} "${HTTP_PROXY}")
 endif()
@@ -14,4 +17,4 @@ if(NOT "${HTTPS_PROXY}" STREQUAL "")
 endif()
 # Packages-----------------------------------------
 include(zlib)
-#include(libpng)
+include(libpng)
