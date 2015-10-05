@@ -11,3 +11,4 @@ Other than cmake, a compiler and maybe an IDE of your choise, Git must be instal
 # Included Packages
 - zlib 1.2.8
 - libpng 1.6.18
+- freetype 2.6

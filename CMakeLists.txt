@@ -19,3 +19,4 @@ endif()
 # Packages-----------------------------------------
 include(zlib)
 include(libpng)
+include(freetype)
