@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 2.4)
 cmake_policy(SET CMP0026 OLD)
 project(runtime)
-set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/packages ${CMAKE_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_SOURCE_DIR}/recipes)
 set(HTTP_PROXY "" CACHE string "If you are behind a http proxy, set it here")
 set(HTTPS_PROXY "" CACHE string "If you are behind a https proxy, set it here")
-set(DOWNLOAD_DIRECTORY "${CMAKE_BINARY_DIR}/download" CACHE path "Source packages will be downloaded to this directory")
+set(DOWNLOAD_DIRECTORY "${CMAKE_SOURCE_DIR}/packages" CACHE path "Source packages will be downloaded to this directory")
 set(BUILD_DIRECTORY "${CMAKE_BINARY_DIR}/build" CACHE path "Source packages will be decompressed, repositories cloned to this directory")
 
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
