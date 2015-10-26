@@ -17,6 +17,7 @@ if(NOT "${HTTPS_PROXY}" STREQUAL "")
 	set(ENV{https_proxy} "${HTTPS_PROXY}")
 endif()
 # Packages-----------------------------------------
+include(gmock_gtest)
 include(zlib)
 include(libpng)
 include(freetype)
