@@ -20,8 +20,7 @@ if(RUNTIME_BUILD_LIBXML2)
 	set(LIBXML2_XMLLINT_EXECUTABLE "${CMAKE_BINARY_DIR}/libxml2/bin/xmllint.exe" CACHE FILEPATH "LibXml2 include directory" FORCE)
 	if(MSVC)
 		string(REGEX REPLACE "/" "\\\\" WIN_BUILD_DIRECTORY ${BUILD_DIRECTORY})
-		string(REGEX REPLACE "/" "\\\\" WIN_CMAKE_BINARY_DIR ${CMAKE_BINARY_DIR})
-		string(REGEX REPLACE "/" "\\\\" WIN_CMAKE_INSTALL_PREFIX ${CMAKE_INSTALL_PREFIX})
+		string(REGEX REPLACE "/" "\\\\" WIN_CMAKE_BINARY_DIR ${CMAKE_BINARY_DIR})		
 		message(STATUS "Configuring libxml2...")
 		if(RUNTIME_BUILD_ZLIB)
 			set(LIBXML_CONFIG_PARAMS 
@@ -30,9 +29,12 @@ if(RUNTIME_BUILD_LIBXML2)
 				"lib=${WIN_CMAKE_BINARY_DIR}\\bin\\Debug") # TODO: this shouldn't be hardcoded
 		endif()
 		add_custom_target(libxml2
-			cscript configure.js debug=yes iconv=no ${LIBXML_CONFIG_PARAMS} "prefix=${WIN_CMAKE_INSTALL_PREFIX}"
-			COMMAND nmake 
+			cscript configure.js debug=yes iconv=no ${LIBXML_CONFIG_PARAMS} "prefix=${WIN_CMAKE_BINARY_DIR}\\libxml2"
+			COMMAND nmake install
 			BYPRODUCTS ${LIBXML2_LIBRARIES}
 			WORKING_DIRECTORY "${BUILD_DIRECTORY}/libxml2-${XML2_VERSION}/win32" COMMENT "Building LibXml2" VERBATIM)
+		install(DIRECTORY ${CMAKE_BINARY_DIR}/libxml2/bin/ DESTINATION bin PATTERN "*")
+		install(DIRECTORY ${CMAKE_BINARY_DIR}/libxml2/lib/ DESTINATION lib PATTERN "*")
+		install(DIRECTORY ${CMAKE_BINARY_DIR}/libxml2/include/ DESTINATION include PATTERN "*")
 	endif(MSVC)
 endif()
