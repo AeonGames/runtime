@@ -29,7 +29,7 @@ if(RUNTIME_BUILD_LIBXML2)
 				"lib=${WIN_CMAKE_BINARY_DIR}\\bin\\Debug") # TODO: this shouldn't be hardcoded
 		endif()
 		add_custom_target(libxml2
-			cscript configure.js debug=yes iconv=no ${LIBXML_CONFIG_PARAMS} "prefix=${WIN_CMAKE_BINARY_DIR}\\libxml2"
+			cscript configure.js debug=no iconv=no ${LIBXML_CONFIG_PARAMS} "prefix=${WIN_CMAKE_BINARY_DIR}\\libxml2"
 			COMMAND nmake install
 			BYPRODUCTS ${LIBXML2_LIBRARIES}
 			WORKING_DIRECTORY "${BUILD_DIRECTORY}/libxml2-${XML2_VERSION}/win32" COMMENT "Building LibXml2" VERBATIM)
