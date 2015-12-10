@@ -16,6 +16,7 @@ endif()
 if(NOT "${HTTPS_PROXY}" STREQUAL "")
 	set(ENV{https_proxy} "${HTTPS_PROXY}")
 endif()
+message(STATUS "${CMAKE_GENERATOR_TOOLSET}")
 # Packages-----------------------------------------
 include(gmock_gtest)
 include(zlib)
