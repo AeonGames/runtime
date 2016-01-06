@@ -8,8 +8,11 @@
 find_path(GLSlang_INCLUDE_DIR glslang/Public/ShaderLang.h
           PATH_SUFFIXES include)
 find_library(GLSlang_LIBRARY NAMES glslang)
+find_library(OSDependent_LIBRARY NAMES OSDependent)
+find_library(OGLCompiler_LIBRARY NAMES OGLCompiler)
+find_library(SPIRV_LIBRARY NAMES SPIRV)
 
-set(GLSlang_LIBRARIES ${GLSlang_LIBRARY} )
+set(GLSlang_LIBRARIES ${GLSlang_LIBRARY} ${OSDependent_LIBRARY} ${OGLCompiler_LIBRARY} ${SPIRV_LIBRARY})
 set(GLSlang_INCLUDE_DIRS ${GLSlang_INCLUDE_DIR} )
 
 include(FindPackageHandleStandardArgs)
