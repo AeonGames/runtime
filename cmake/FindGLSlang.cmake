@@ -5,8 +5,7 @@
 #  GLSlang_LIBRARIES - The libraries needed to use GLSlang
 #  GLSlang_DEFINITIONS - Compiler switches required for using GLSlang
 
-find_path(GLSlang_INCLUDE_DIR glslang/Public/ShaderLang.h
-          PATH_SUFFIXES include)
+find_path(GLSlang_INCLUDE_DIR glslang/Public/ShaderLang.h)
 find_library(GLSlang_LIBRARY NAMES glslang)
 find_library(OSDependent_LIBRARY NAMES OSDependent)
 find_library(OGLCompiler_LIBRARY NAMES OGLCompiler)
