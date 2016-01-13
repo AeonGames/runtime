@@ -1,4 +1,4 @@
-# Copyright 2015 AeonGames, Rodrigo Hernandez
+# Copyright 2015,2016 AeonGames, Rodrigo Hernandez
 # Licensed under the terms of the Apache 2.0 License.
 
 include(functions)
@@ -21,17 +21,22 @@ if(RUNTIME_BUILD_GMOCK_GTEST)
 	
 	file(READ ${BUILD_DIRECTORY}/gmock-1.7.0/CMakeLists.txt GMOCK_CMAKELISTS)
 	if(NOT GMOCK_CMAKELISTS MATCHES "install\\(TARGETS gmock gmock_main")
-		string(CONCAT GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}" "\ninstall(TARGETS gmock gmock_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
-		string(CONCAT GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}" "\ninstall(DIRECTORY include/gmock DESTINATION include)")		
+		#string(CONCAT GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}" "\ninstall(TARGETS gmock gmock_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
+		set(GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}\ninstall(TARGETS gmock gmock_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
+		#string(CONCAT GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}" "\ninstall(DIRECTORY include/gmock DESTINATION include)")		
+		set(GMOCK_CMAKELISTS "${GMOCK_CMAKELISTS}\ninstall(DIRECTORY include/gmock DESTINATION include)")		
 		file(WRITE ${BUILD_DIRECTORY}/gmock-1.7.0/CMakeLists.txt "${GMOCK_CMAKELISTS}")
 	endif()
 
 	file(READ ${BUILD_DIRECTORY}/gmock-1.7.0/gtest/CMakeLists.txt GTEST_CMAKELISTS)
 	if(NOT GTEST_CMAKELISTS MATCHES "install\\(TARGETS gtest gtest_main")
-		string(CONCAT GTEST_CMAKELISTS "${GTEST_CMAKELISTS}" "\ninstall(TARGETS gtest gtest_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
-		string(CONCAT GTEST_CMAKELISTS "${GTEST_CMAKELISTS}" "\ninstall(DIRECTORY include/gtest DESTINATION include)")
+		#string(CONCAT GTEST_CMAKELISTS "${GTEST_CMAKELISTS}" "\ninstall(TARGETS gtest gtest_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
+		set(GTEST_CMAKELISTS "${GTEST_CMAKELISTS}\ninstall(TARGETS gtest gtest_main RUNTIME DESTINATION bin LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)")
+		#string(CONCAT GTEST_CMAKELISTS "${GTEST_CMAKELISTS}" "\ninstall(DIRECTORY include/gtest DESTINATION include)")
+		set(GTEST_CMAKELISTS "${GTEST_CMAKELISTS}\ninstall(DIRECTORY include/gtest DESTINATION include)")
 		file(WRITE ${BUILD_DIRECTORY}/gmock-1.7.0/gtest/CMakeLists.txt "${GTEST_CMAKELISTS}")
 	endif()
 	
+	set(gtest_disable_pthreads ON CACHE BOOL "Do not require linking tests against pthreads" FORCE)
 	add_subdirectory("${BUILD_DIRECTORY}/gmock-1.7.0")	
 endif()

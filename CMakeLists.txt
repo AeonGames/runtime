@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.4)
-cmake_policy(SET CMP0026 OLD)
+#cmake_policy(SET CMP0026 OLD)
 project(runtime)
 set(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake ${CMAKE_SOURCE_DIR}/recipes)
 set(HTTP_PROXY "" CACHE string "If you are behind a http proxy, set it here")
