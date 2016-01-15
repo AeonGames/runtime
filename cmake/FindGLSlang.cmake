@@ -11,6 +11,9 @@ find_library(OSDependent_LIBRARY NAMES OSDependent)
 find_library(OGLCompiler_LIBRARY NAMES OGLCompiler)
 find_library(SPIRV_LIBRARY NAMES SPIRV)
 
+set(CMAKE_THREAD_PREFER_PTHREAD ON)
+find_package(Threads)
+
 set(GLSlang_LIBRARIES ${GLSlang_LIBRARY} ${OSDependent_LIBRARY} ${OGLCompiler_LIBRARY} ${SPIRV_LIBRARY})
 set(GLSlang_INCLUDE_DIRS ${GLSlang_INCLUDE_DIR} )
 
@@ -20,4 +23,4 @@ include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(GLSlang  DEFAULT_MSG
                                   GLSlang_LIBRARY GLSlang_INCLUDE_DIR)
 
-mark_as_advanced(GLSlang_INCLUDE_DIR GLSlang_LIBRARY )
+mark_as_advanced(GLSlang_INCLUDE_DIR GLSlang_LIBRARY OSDependent_LIBRARY OGLCompiler_LIBRARY SPIRV_LIBRARY)
