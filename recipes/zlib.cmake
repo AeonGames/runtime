@@ -1,7 +1,8 @@
-# Copyright 2015 AeonGames, Rodrigo Hernandez
+# Copyright 2015-2016 AeonGames, Rodrigo Hernandez
 # Licensed under the terms of the Apache 2.0 License.
 
 include(functions)
+include(EchoTargetProperties)
 
 option(RUNTIME_BUILD_ZLIB "Build the zlib compression library")
 
@@ -21,9 +22,22 @@ if(RUNTIME_BUILD_ZLIB)
 	set(ZLIB_LIBRARY zlib CACHE INTERNAL "Local zlib" FORCE)
     if(NOT TARGET ZLIB::ZLIB)
 		add_library(ZLIB::ZLIB UNKNOWN IMPORTED)
-		set_target_properties(ZLIB::ZLIB PROPERTIES
-			IMPORTED_LOCATION_RELEASE "${CMAKE_BINARY_DIR}/bin/$(Configuration)/zlib.lib"
-			IMPORTED_LOCATION_DEBUG "${CMAKE_BINARY_DIR}/bin/$(Configuration)/zlibd.lib"
-			INTERFACE_INCLUDE_DIRECTORIES "${ZLIB_INCLUDE_DIRS}")
+        if(MSVC)
+	    	set_target_properties(ZLIB::ZLIB PROPERTIES
+		    	IMPORTED_LOCATION_RELEASE "${CMAKE_BINARY_DIR}/bin/$(Configuration)/zlib.lib"
+			    IMPORTED_LOCATION_DEBUG "${CMAKE_BINARY_DIR}/bin/$(Configuration)/zlibd.lib"
+    			INTERFACE_INCLUDE_DIRECTORIES "${ZLIB_INCLUDE_DIRS}")
+        else()
+			if(CMAKE_VERSION VERSION_LESS 3.0.0.0)
+				get_property(ZLIB_LOCATION TARGET zlib PROPERTY LOCATION)
+				get_property(ZLIB_LOCATION_DEBUG TARGET zlib PROPERTY LOCATION_DEBUG)
+				get_property(ZLIB_LOCATION_RELEASE TARGET zlib PROPERTY LOCATION_RELEASE)
+	    		set_target_properties(ZLIB::ZLIB PROPERTIES
+		    		IMPORTED_LOCATION "${ZLIB_LOCATION}"
+		    		IMPORTED_LOCATION_RELEASE "${ZLIB_LOCATION_RELEASE}"
+			    	IMPORTED_LOCATION_DEBUG "${ZLIB_LOCATION_DEBUG}"
+	    			INTERFACE_INCLUDE_DIRECTORIES "${ZLIB_INCLUDE_DIRS}")
+			endif()
+        endif()
     endif()	
 endif()
