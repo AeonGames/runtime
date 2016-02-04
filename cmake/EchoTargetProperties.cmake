@@ -166,7 +166,7 @@ XCODE_ATTRIBUTE_WHATEVER
   message("======================== ${tgt} ========================")
   foreach(p ${props})
     message("${tgt} ${p}")
-	echo_target_property("${tgt}" "${p}")
+    echo_target_property("${tgt}" "${p}")
   endforeach()
   message("")
 endfunction()

@@ -4,7 +4,7 @@ if(COMMAND cmake_policy)
 endif(COMMAND cmake_policy)
 
 if(POLICY CMP0054)
-	cmake_policy(SET CMP0054 OLD)
+    cmake_policy(SET CMP0054 OLD)
 endif()
 
 project(runtime)
@@ -19,25 +19,25 @@ set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/bin)
 
 if(NOT "${HTTP_PROXY}" STREQUAL "")
-	set(ENV{http_proxy} "${HTTP_PROXY}")
+    set(ENV{http_proxy} "${HTTP_PROXY}")
 endif()
 if(NOT "${HTTPS_PROXY}" STREQUAL "")
-	set(ENV{https_proxy} "${HTTPS_PROXY}")
+    set(ENV{https_proxy} "${HTTPS_PROXY}")
 endif()
 
 find_package(Cygwin)
 if(CYGWIN_INSTALL_PATH)
-	list(APPEND CMAKE_PREFIX_PATH "${CYGWIN_INSTALL_PATH}")
-	set(ENV{CYGWIN} "nodosfilewarning")
+    list(APPEND CMAKE_PREFIX_PATH "${CYGWIN_INSTALL_PATH}")
+    set(ENV{CYGWIN} "nodosfilewarning")
 else(CYGWIN_INSTALL_PATH)
-	# Try to guess the path for GnuWin32
-	set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/GnuWin32")
+    # Try to guess the path for GnuWin32
+    set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/GnuWin32")
 endif(CYGWIN_INSTALL_PATH)
 
 if(UNIX)
-	# Use RPATH so generated binaries know where to look for their libraries
-	list(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
-	list(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${CMAKE_LIBRARY_ARCHITECTURE}")
+    # Use RPATH so generated binaries know where to look for their libraries
+    list(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}")
+    list(APPEND CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_PREFIX}/${CMAKE_INSTALL_LIBDIR}/${CMAKE_LIBRARY_ARCHITECTURE}")
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 endif()
 
