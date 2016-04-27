@@ -25,13 +25,12 @@ if(NOT "${HTTPS_PROXY}" STREQUAL "")
     set(ENV{https_proxy} "${HTTPS_PROXY}")
 endif()
 
+list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
+
 find_package(Cygwin)
 if(CYGWIN_INSTALL_PATH)
     list(APPEND CMAKE_PREFIX_PATH "${CYGWIN_INSTALL_PATH}")
     set(ENV{CYGWIN} "nodosfilewarning")
-else(CYGWIN_INSTALL_PATH)
-    # Try to guess the path for GnuWin32
-    set(CMAKE_PREFIX_PATH "${CMAKE_PREFIX_PATH};C:/GnuWin32")
 endif(CYGWIN_INSTALL_PATH)
 
 if(UNIX)
