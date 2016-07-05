@@ -42,7 +42,7 @@ endif()
 
 find_package(Git)
 
-message(STATUS "${CMAKE_GENERATOR_TOOLSET}")
+message(STATUS "${CMAKE_GENERATOR_TOOLset}")
 # Packages-----------------------------------------
 include(gmock_gtest)
 include(zlib)
