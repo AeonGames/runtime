@@ -8,3 +8,10 @@ msvc32
 mingw32
 mingw64
 build
+make
+make64
+make32
+#####################
+# Editor temp files #
+#####################
+*.swp
