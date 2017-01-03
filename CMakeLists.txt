@@ -14,7 +14,6 @@ set(HTTP_PROXY "" CACHE string "If you are behind a http proxy, set it here")
 set(HTTPS_PROXY "" CACHE string "If you are behind a https proxy, set it here")
 set(DOWNLOAD_DIRECTORY "${CMAKE_SOURCE_DIR}/packages" CACHE path "Source packages will be downloaded to this directory")
 set(BUILD_DIRECTORY "${CMAKE_BINARY_DIR}/build" CACHE path "Source packages will be decompressed, repositories cloned to this directory")
-
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/bin)
 
@@ -24,6 +23,16 @@ endif()
 if(NOT "${HTTPS_PROXY}" STREQUAL "")
     set(ENV{https_proxy} "${HTTPS_PROXY}")
 endif()
+
+find_package(Git)
+
+if(WIN32)
+    # On Windows try to use the mingw64 binaries of unix tools
+    # provided by git before cygwin binaries.
+    string(REPLACE "/cmd/git.exe" "" GIT_PATH ${GIT_EXECUTABLE})
+    list(APPEND CMAKE_PREFIX_PATH "${GIT_PATH}/mingw64")    
+    list(APPEND CMAKE_PREFIX_PATH "${GIT_PATH}/usr")
+endif(WIN32)
 
 list(APPEND CMAKE_PREFIX_PATH "${CMAKE_INSTALL_PREFIX}")
 
@@ -40,9 +49,11 @@ if(UNIX)
 set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 endif()
 
-find_package(Git)
+if(NOT IS_DIRECTORY "${BUILD_DIRECTORY}")
+    file(MAKE_DIRECTORY ${BUILD_DIRECTORY})
+endif(NOT IS_DIRECTORY "${BUILD_DIRECTORY}")    
 
-message(STATUS "${CMAKE_GENERATOR_TOOLset}")
+message(STATUS "${CMAKE_GENERATOR_TOOLSET}")
 # Packages-----------------------------------------
 include(gmock_gtest)
 include(zlib)

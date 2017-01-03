@@ -1,4 +1,4 @@
-# Copyright 2015-2016 AeonGames, Rodrigo Hernandez
+# Copyright 2015-2017 AeonGames, Rodrigo Hernandez
 # Licensed under the terms of the Apache 2.0 License.
 function(gitclone repo path)
     if(NOT IS_DIRECTORY "${BUILD_DIRECTORY}/${path}")
@@ -19,6 +19,20 @@ function(gitclonetag repo path tag)
         endif(NOT git_result EQUAL 0)
     endif(NOT IS_DIRECTORY "${BUILD_DIRECTORY}/${path}")
 endfunction(gitclonetag repo path tag)
+
+function(gitclonecommit repo path commit)
+    if(NOT IS_DIRECTORY "${BUILD_DIRECTORY}/${path}")
+        message(STATUS "Cloning ${repo}, please wait")
+        execute_process(COMMAND ${GIT_EXECUTABLE} clone ${repo} ${path} WORKING_DIRECTORY "${BUILD_DIRECTORY}" RESULT_VARIABLE git_result OUTPUT_VARIABLE git_output ERROR_VARIABLE git_output)
+        if(NOT git_result EQUAL 0)
+            MESSAGE(FATAL_ERROR "Cloning ${repo} failed.\nResult: ${git_result}\nOutput: ${git_output}")
+        endif(NOT git_result EQUAL 0)
+        execute_process(COMMAND ${GIT_EXECUTABLE} checkout ${commit} WORKING_DIRECTORY "${BUILD_DIRECTORY}/${path}" RESULT_VARIABLE git_result OUTPUT_VARIABLE git_output ERROR_VARIABLE git_output)
+        if(NOT git_result EQUAL 0)
+            MESSAGE(FATAL_ERROR "Cloning ${repo} failed.\nResult: ${git_result}\nOutput: ${git_output}")
+        endif(NOT git_result EQUAL 0)
+    endif(NOT IS_DIRECTORY "${BUILD_DIRECTORY}/${path}")
+endfunction(gitclonecommit repo path commit)
 
 function(download url filename)
     if(NOT EXISTS "${DOWNLOAD_DIRECTORY}/${filename}")

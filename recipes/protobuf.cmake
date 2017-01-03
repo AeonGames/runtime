@@ -6,7 +6,7 @@ include(functions)
 option(RUNTIME_BUILD_PROTOBUF "Build the google proto buffers library.")
 
 if(RUNTIME_BUILD_PROTOBUF)
-    gitclonetag("https://github.com/google/protobuf.git" "protobuf" "v3.0.0-beta-3")
+    gitclonetag("https://github.com/google/protobuf.git" "protobuf" "v3.1.0")
     set(protobuf_BUILD_TESTS OFF CACHE BOOL "We have our own gtest instance." FORCE)
     set(protobuf_MSVC_STATIC_RUNTIME OFF CACHE BOOL "Dynamic Runtime is the default." FORCE)
     set(protobuf_BUILD_SHARED_LIBS ON CACHE BOOL "Force shared libraries." FORCE)
