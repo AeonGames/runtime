@@ -1,4 +1,4 @@
-# Copyright 2015 AeonGames, Rodrigo Hernandez
+# Copyright 2015-2017 AeonGames, Rodrigo Hernandez
 # Licensed under the terms of the Apache 2.0 License.
 
 include(functions)
@@ -16,7 +16,7 @@ if(RUNTIME_BUILD_GLSLANG)
     
     gitclonecommit("https://github.com/KhronosGroup/glslang.git" "glslang" "ae79697db1b3bcf7e0adf80e1c4b423887fc523f")
     add_subdirectory("${BUILD_DIRECTORY}/glslang")
-    # Note: The previous iteration for this recipe contained some patching commands
+    # Note: A previous iteration for this recipe contained some patching commands
     # to allow for library and header installation, if this is not yet implemented
     # upstream, look it up in the git history before reimplementing from scratch.
 endif()
