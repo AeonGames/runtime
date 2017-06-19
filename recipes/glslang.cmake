@@ -14,7 +14,7 @@ if(RUNTIME_BUILD_GLSLANG)
     # and update as necesary until a stable version with
     # enough polished glsl to spir-v features is available.
     
-    gitclonecommit("https://github.com/KhronosGroup/glslang.git" "glslang" "ae79697db1b3bcf7e0adf80e1c4b423887fc523f")
+    gitclonecommit("https://github.com/KhronosGroup/glslang.git" "glslang" "e2ff404f6bef09d630fc1cd7c09ac9a84a142bbf")
     add_subdirectory("${BUILD_DIRECTORY}/glslang")
     # Note: A previous iteration for this recipe contained some patching commands
     # to allow for library and header installation, if this is not yet implemented
