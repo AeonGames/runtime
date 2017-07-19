@@ -5,6 +5,8 @@ branches:
 image: Visual Studio 2017
 configuration: Release
 platform: x64
+environment:
+  DEPLOY: NO
 before_build:
 - cmd: >-
     mkdir build
@@ -32,3 +34,4 @@ deploy:
   artifact: msvc64-runtime
   on:
     branch: master
+    DEPLOY: YES
