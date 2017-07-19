@@ -1,0 +1,34 @@
+version: '{branch}-{build}'
+branches:
+  only:
+  - master
+image: Visual Studio 2017
+configuration: Release
+platform: x64
+before_build:
+- cmd: >-
+    mkdir build
+
+    cd build
+
+    cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB=true -DCMAKE_INSTALL_PREFIX:path=../release ..
+build:
+  project: build/runtime.sln
+  verbosity: minimal
+after_build:
+- cmd: >-
+    msbuild INSTALL.vcxproj
+
+    cd ..
+
+    7z a runtime-release-msvc64.zip release
+artifacts:
+- path: runtime-release-msvc64.zip
+  name: runtime-release-msvc64
+deploy:
+- provider: GitHub
+  auth_token:
+    secure: EW1TkwxBon7bfGf3JnK6SI3dcH2RLAaXRsLlJ5IJITdbDr1zCHFo6U2KuQEhDIq7
+  artifact: runtime-release-msvc64
+  on:
+    branch: master
