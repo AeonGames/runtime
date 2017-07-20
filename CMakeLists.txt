@@ -51,9 +51,12 @@ endif()
 
 if(NOT IS_DIRECTORY "${BUILD_DIRECTORY}")
     file(MAKE_DIRECTORY ${BUILD_DIRECTORY})
-endif(NOT IS_DIRECTORY "${BUILD_DIRECTORY}")    
-
+endif(NOT IS_DIRECTORY "${BUILD_DIRECTORY}")
 message(STATUS "${CMAKE_GENERATOR_TOOLSET}")
+
+find_program (GREP_EXECUTABLE grep HINTS ENV ProgramFiles PATH_SUFFIXES Git/usr/bin)
+configure_file("${CMAKE_SOURCE_DIR}/deploy.bat.in" "${CMAKE_SOURCE_DIR}/deploy.bat")
+
 # Packages-----------------------------------------
 include(gmock_gtest)
 include(zlib)

@@ -5,8 +5,6 @@ branches:
 image: Visual Studio 2017
 configuration: Release
 platform: x64
-environment:
-  DEPLOY: NO
 before_build:
 - cmd: >-
     mkdir build
@@ -14,6 +12,8 @@ before_build:
     cd build
 
     cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB=true -DCMAKE_INSTALL_PREFIX:path=../msvc64-runtime ..
+    
+    deploy.bat
 build:
   project: build/runtime.sln
   verbosity: minimal
