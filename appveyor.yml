@@ -11,7 +11,7 @@ before_build:
 
     cd build
 
-    cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB=true -DCMAKE_INSTALL_PREFIX:path=../msvc64-runtime ..
+    cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB=true -DRUNTIME_BUILD_NODEEDITOR=true -DCMAKE_INSTALL_PREFIX:path=../msvc64-runtime ..
     
     cd ..
 
