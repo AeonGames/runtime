@@ -15,18 +15,7 @@ if(RUNTIME_BUILD_NODEEDITOR)
             "RUNTIME DESTINATION bin\n"
             "LIBRARY DESTINATION bin\n"
             "ARCHIVE DESTINATION lib)\n"
-            "install(FILES src/Connection.hpp  DESTINATION include/nodes RENAME Connection)\n"
-            "install(FILES src/FlowScene.hpp  DESTINATION include/nodes RENAME FlowScene)\n"
-            "install(FILES src/Node.hpp  DESTINATION include/nodes RENAME Node)\n"
-            "install(FILES src/NodeGeometry.hpp  DESTINATION include/nodes RENAME NodeGeometry)\n"
-            "install(FILES src/ConnectionStyle.hpp  DESTINATION include/nodes RENAME ConnectionStyle)\n"
-            "install(FILES src/FlowView.hpp  DESTINATION include/nodes RENAME FlowView)\n"
-            "install(FILES src/NodeData.hpp  DESTINATION include/nodes RENAME NodeData)\n"
-            "install(FILES src/NodePainterDelegate.hpp  DESTINATION include/nodes RENAME NodePainterDelegate)\n"
-            "install(FILES src/DataModelRegistry.hpp  DESTINATION include/nodes RENAME DataModelRegistry)\n"
-            "install(FILES src/FlowViewStyle.hpp  DESTINATION include/nodes RENAME FlowViewStyle)\n"
-            "install(FILES src/NodeDataModel.hpp  DESTINATION include/nodes RENAME NodeDataModel)\n"
-            "install(FILES src/NodeStyle.hpp DESTINATION include/nodes RENAME NodeStyle)\n")
+            "install(DIRECTORY src/ DESTINATION include/nodes FILES_MATCHING PATTERN \"*.hpp\")\n")
     endif()
     add_subdirectory("${BUILD_DIRECTORY}/nodeeditor")
 endif()
