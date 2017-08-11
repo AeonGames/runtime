@@ -11,7 +11,7 @@ before_build:
 
     cd build
 
-    cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB=true -DRUNTIME_BUILD_NODEEDITOR=true -DQt5_DIR:path=C:/Qt/5.9.1/msvc2017_64/lib/cmake/Qt5 -DCMAKE_INSTALL_PREFIX:path=../msvc64-runtime ..
+    cmake -G"Visual Studio 15 2017 Win64" -DRUNTIME_BUILD_ASTYLE:bool=true -DRUNTIME_BUILD_GLSLANG:bool=true -DRUNTIME_BUILD_LIBPNG:bool=true -DRUNTIME_BUILD_PROTOBUF:bool=true -DRUNTIME_BUILD_XXD:bool=true -DRUNTIME_BUILD_ZLIB:bool=true -DRUNTIME_BUILD_NODEEDITOR:bool=true -DQt5_DIR:path=C:/Qt/5.9.1/msvc2017_64/lib/cmake/Qt5 -DCMAKE_INSTALL_PREFIX:path=../msvc64-runtime ..
     
     cd ..
 
